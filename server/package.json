@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "test": "nodemon server"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,9 @@
     "node": "14.17.5"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "deep-clone": "^3.0.3",
+    "dotenv": "^16.0.1",
     "express": "^4.17.2",
     "nodemon": "^2.0.15"
   }

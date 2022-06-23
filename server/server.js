@@ -2,6 +2,7 @@ const { exit } = require("process");
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
+require("dotenv").config();
 
 const PORT = process.env?.PORT || 3000;
 
