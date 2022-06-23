@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { checkWord, ErrorResponse, SuccessResponse } from 'utils/fetch'
 
@@ -16,6 +16,17 @@ import {
 const MainPage: React.FC = () => {
   const [suggestions, setSuggestions] = useState<string[]>([])
   const inputEl = useRef(null)
+
+  useEffect(() => {
+    window.addEventListener('keyup', handleKeyEvent)
+    return window.removeEventListener('keyup', handleKeyEvent)
+  }, [])
+
+  const handleKeyEvent = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  }
 
   const handleSearch = async () => {
     const searchWord = inputEl.current.value
