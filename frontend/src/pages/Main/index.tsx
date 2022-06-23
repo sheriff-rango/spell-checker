@@ -37,8 +37,10 @@ const MainPage: React.FC = () => {
       toast.error('Axios Error!')
     } else if ((checkedResult as ErrorResponse).msg) {
       toast.error((checkedResult as ErrorResponse).msg)
+      setSuggestions([])
     } else if ((checkedResult as SuccessResponse).correct) {
       toast.success('The word is correct!')
+      setSuggestions([])
     } else if ((checkedResult as SuccessResponse).suggestions?.length) {
       toast.warning('The word is incorrect but there are some suggestions!')
       setSuggestions((checkedResult as SuccessResponse).suggestions)
