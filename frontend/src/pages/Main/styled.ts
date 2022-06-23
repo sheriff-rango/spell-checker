@@ -65,6 +65,15 @@ export const SearchWordInput = styled.input`
       }
     }
   }
+  &:disabled {
+    & ~ ${SubmitButton} {
+      color: #ccc;
+      cursor: not-allowed;
+      &:hover {
+        color: #ccc;
+      }
+    }
+  }
 `
 
 export const SuggestionsWrapper = styled.div`
@@ -72,7 +81,7 @@ export const SuggestionsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   max-height: calc(100% - 186px);
-  overflow; auto;
+  overflow: auto;
 `
 
 export const SuggestionItem = styled.span`

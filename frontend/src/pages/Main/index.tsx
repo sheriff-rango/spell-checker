@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { toast } from 'react-toastify'
 import { checkWord, ErrorResponse, SuccessResponse } from 'utils/fetch'
 
@@ -15,25 +15,23 @@ import {
 
 const MainPage: React.FC = () => {
   const [suggestions, setSuggestions] = useState<string[]>([])
+  const [isPending, setIsPending] = useState<boolean>(false)
   const inputEl = useRef(null)
 
-  useEffect(() => {
-    window.addEventListener('keyup', handleKeyEvent)
-    return window.removeEventListener('keyup', handleKeyEvent)
-  }, [])
-
-  const handleKeyEvent = (e: KeyboardEvent) => {
+  const handleKeyEvent = (e: any) => {
     if (e.key === 'Enter') {
       handleSearch()
     }
   }
 
   const handleSearch = async () => {
+    if (isPending) return
     const searchWord = inputEl.current.value
     if (!searchWord) {
       toast.warning('Input a word!')
       return
     }
+    setIsPending(true)
     const checkedResult = await checkWord(searchWord)
     if (!checkedResult) {
       toast.error('Axios Error!')
@@ -45,13 +43,14 @@ const MainPage: React.FC = () => {
       toast.warning('The word is incorrect but there are some suggestions!')
       setSuggestions((checkedResult as SuccessResponse).suggestions)
     }
+    setIsPending(false)
   }
 
   return (
     <Wrapper>
       <Title>Spell Checker</Title>
       <SearchWordInputWrapper>
-        <SearchWordInput ref={inputEl} placeholder="Input a word..." />
+        <SearchWordInput ref={inputEl} placeholder="Input a word..." onKeyUp={handleKeyEvent} disabled={isPending} />
         <FocusBorder />
         <SubmitButton onClick={handleSearch}>Check</SubmitButton>
       </SearchWordInputWrapper>
