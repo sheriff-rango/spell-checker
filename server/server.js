@@ -4,6 +4,7 @@ const fs = require("fs");
 const cors = require("cors");
 const levenshteinDistance = require("./levenshtein");
 const getCorrectWords = require("./utils");
+
 require("dotenv").config();
 
 const PORT = process.env?.PORT || 3000;
