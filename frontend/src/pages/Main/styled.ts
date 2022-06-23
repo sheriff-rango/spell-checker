@@ -27,6 +27,17 @@ export const FocusBorder = styled.span`
   transition: 0.4s;
 `
 
+export const SubmitButton = styled.span`
+  color: #ccc;
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.5s all;
+`
+
 export const SearchWordInput = styled.input`
   border: 0;
   padding: 7px 0;
@@ -36,10 +47,36 @@ export const SearchWordInput = styled.input`
 
   &:focus {
     outline: none;
-
     & ~ ${FocusBorder} {
       width: 100%;
       transition: 0.4s;
     }
   }
+  &:placeholder-shown {
+    & ~ ${SubmitButton} {
+      cursor: not-allowed;
+    }
+  }
+  &:not(:placeholder-shown) {
+    & ~ ${SubmitButton} {
+      color: #2b7de9;
+      &:hover {
+        color: #174ea6;
+      }
+    }
+  }
+`
+
+export const SuggestionsWrapper = styled.div`
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: calc(100% - 186px);
+  overflow; auto;
+`
+
+export const SuggestionItem = styled.span`
+  margin: 20px;
+  font-size: 20px;
+  cursor: pointer;
 `

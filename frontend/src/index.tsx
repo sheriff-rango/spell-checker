@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { UserListProvider } from 'contexts/UserListContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserListProvider>
-      <App />
-    </UserListProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 )
