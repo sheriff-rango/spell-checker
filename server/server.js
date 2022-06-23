@@ -6,7 +6,7 @@ const levenshteinDistance = require("./levenshtein");
 const getCorrectWords = require("./utils");
 require("dotenv").config();
 
-const PORT = process.env?.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 let DICTIONARY_WORDS = [];
 
